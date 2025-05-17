@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Text Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #noteArea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+        }
+        .dark-mode {
+            background-color: #1a1a1a; /* Dark grey background */
+            color: white; /* White text */
+        }
+        .dark-mode #noteArea {
+            background-color: #333; /* Darker area for text input */
+            color: white; /* White text in text area */
+            border: 1px solid #555; /* Slightly lighter border */
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #homeLink {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .dark-mode #homeLink {
+            color: white; /* White link in dark mode */
+        }
+        #homeLink:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<a id="homeLink" href="#" onclick="location.reload();">freetextpage.com</a>
+<h1>Simple Notepad</h1>
+<textarea id="noteArea" placeholder="Type your notes here...">hello</textarea><br>
+<button id="saveButton">Save as .txt</button>
+<button id="darkModeButton">Toggle Dark Mode</button>
+
+<script>
+    document.getElementById('saveButton').addEventListener('click', function() {
+        const text = document.getElementById('noteArea').value;
+        const blob = new Blob([text], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'notes.txt';
+        link.click();
+    });
+
+    document.getElementById('darkModeButton').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+    });
+</script>
+
+
+
+
+</body></html>
 
